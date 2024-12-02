@@ -200,32 +200,38 @@
     const eyeButton = document.getElementById('eye-button');
     const passwordInput = document.getElementById('password');
 
+    // Load theme preference from localStorage
     if (localStorage.getItem('theme') === 'dark') {
       document.body.classList.add('dark-mode');
     }
 
+    // Theme toggle functionality
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
+      // Save theme preference to localStorage
       localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     });
 
+    // Show/hide password functionality
     eyeButton.addEventListener('click', () => {
       if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        eyeButton.innerHTML = '&#x1F440;';
+        eyeButton.innerHTML = '&#x1F440;'; // Closed eye icon
       } else {
         passwordInput.type = 'password';
-        eyeButton.innerHTML = '&#x1F441;';
+        eyeButton.innerHTML = '&#x1F441;'; // Open eye icon
       }
     });
 
+    // Form submission handler
     form.addEventListener('submit', (event) => {
       event.preventDefault();
 
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
-      fetch('/.netlify/functions/authenticate', {
+      // Fetch credentials from your serverless function
+      fetch('/.netlify/functions/authenticate', { // Replace with your function endpoint
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -233,6 +239,7 @@
         body: JSON.stringify({username, password})
       })
         .then(response => {
+          // Detailed error handling
           if (!response.ok) {
             if (response.status === 401) {
               return response.json().then(data => {
@@ -262,6 +269,7 @@
         });
     });
 
+    // MRBros button click handler
     document.getElementById('MRBros').addEventListener('click', () => {
       if (confirm("Do you want to continue to biolink?")) {
         window.open("https://bio.link/mrbros1509", "_blank");
