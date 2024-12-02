@@ -2,20 +2,13 @@
   "Category 1": {
     "items": [
       { "name": "Item A", "price": "10" },
-      { "name": "Item B", "price": "12" },
-      { "name": "Item C", "price": "15" },
-      { "name": "Item X", "price": "20" },
-      { "name": "Item Y", "price": "22" },
-      { "name": "Item Z", "price": "25" },
-      { "name": "Item P", "price": "0" },
-      { "name": "Item Q", "price": "5" },
-      { "name": "Item F", "price": "18" },
-      { "name": "Item G", "price": "20" },
-      { "name": "Regular Item", "price": "25" },
-      { "name": "Regular Item 1", "price": "15" },
-      { "name": "Regular Item 2", "price": "18" },
-      { "name": "Item Without Price", "price": "0" },
-      { "name": "Another Item", "price": "12" },
+      { "name": "Item B", "price": "12.00" },
+      { "name": "Item C", "price": "15,00" },
+      { "name": "Item X", "price": "20.15" },
+      { "name": "Item Y", "price": "22,53" },
+      { "name": "Item Z", "price": "N/A" },
+      { "name": "No price", "price": "0" },
+      { "name": "All CAPS", "price": "12" },
       { "name": "This is an item with a very long name that might wrap", "price": "25" },
       { "name": "Another long name for this item in the category", "price": "30" },
       { "name": "Item with !@#$%^&*()_+=-`~[]\\{}|;':\",./<>? special characters", "price": "15" },
@@ -24,20 +17,14 @@
       { "name": "456 Item", "price": "12" },
       { "name": "Item with Ünicode characters", "price": "15" },
       { "name": "More Ünicode! こんにちは", "price": "20" },
-      { "name": "Item One", "price": "8" },
-      { "name": "Item Two", "price": "10" },
-      { "name": "Item with - dashes", "price": "12" },
-      { "name": "Another - item", "price": "15" },
-      { "name": "UPPERCASE ITEM", "price": "10" },
-      { "name": "lowercase item", "price": "12" },
-      { "name": "Item with spaces", "price": "15" },
-      { "name": "Spaced out item", "price": "20" }
+      { "name": "Item with - dashes", "price": "12" }
     ]
   },
-  "Category 2": {
+  "Category 2 with price": {
+    "price": "25",
     "items": [
       {
-        "name": "Item With Subcategories",
+        "name": "Item With Subcategories and a sub price",
         "price": "30",
         "subcategories": [
           { "name": "Subitem 1", "price": "5" },
@@ -45,25 +32,10 @@
         ]
       },
       {
-        "name": "Main Item 1",
-        "subcategories": [
-          { "name": "Subitem A", "price": "12" },
-          { "name": "Subitem B", "price": "15" }
-        ]
-      },
-      {
-        "name": "Main Item 2",
-        "subcategories": [
-          { "name": "Subitem X", "price": "10" },
-          { "name": "Subitem Y", "price": "12" }
-        ]
-      },
-      {
         "name": "Item with Subcategories",
         "price": "20",
         "subcategories": [
-          { "name": "Subitem A", "price": "5" },
-          { "name": "Subitem B", "price": "7" }
+          { "name": "Subitem A", "price": "5.55" }
         ]
       },
       {
