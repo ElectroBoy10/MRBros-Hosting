@@ -161,6 +161,19 @@
     .dark-mode #MRBros {
       color: rgb(138, 180, 248);
     }
+
+    .version {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 10px;
+      color: #666; /* Light theme */
+      transition: color 0.3s ease;
+    }
+
+    .dark-mode .version {
+      color: #bbb; /* Dark theme */
+    }
   </style>
 </head>
 <body>
@@ -178,6 +191,7 @@
     <div id="message"></div>
   </div>
   <button id="MRBros">Made By MRBros</button>
+  <div class="version">v1.0</div> 
 
   <script>
     const form = document.getElementById('login-form');
