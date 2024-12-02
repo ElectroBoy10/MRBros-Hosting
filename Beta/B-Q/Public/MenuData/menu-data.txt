@@ -1,31 +1,40 @@
 {
-  "Simple-Category-1": {
+  "Category 1": {
     "items": [
       { "name": "Item A", "price": "10" },
       { "name": "Item B", "price": "12" },
-      { "name": "Item C", "price": "15" }
-    ]
-  },
-  "Simple-Category-2": [
-    { "name": "Item X", "price": "20" },
-    { "name": "Item Y", "price": "22" },
-    { "name": "Item Z", "price": "25" }
-  ],
-  "Category-With-Price": {
-    "price": "25",
-    "items": [
+      { "name": "Item C", "price": "15" },
+      { "name": "Item X", "price": "20" },
+      { "name": "Item Y", "price": "22" },
+      { "name": "Item Z", "price": "25" },
       { "name": "Item P", "price": "0" },
-      { "name": "Item Q", "price": "5" }
-    ]
-  },
-  "Category-With-Different-Name-contents": {
-    "name": "Fancy Category Name",
-    "items": [
+      { "name": "Item Q", "price": "5" },
       { "name": "Item F", "price": "18" },
-      { "name": "Item G", "price": "20" }
+      { "name": "Item G", "price": "20" },
+      { "name": "Regular Item", "price": "25" },
+      { "name": "Regular Item 1", "price": "15" },
+      { "name": "Regular Item 2", "price": "18" },
+      { "name": "Item Without Price", "price": "0" },
+      { "name": "Another Item", "price": "12" },
+      { "name": "This is an item with a very long name that might wrap", "price": "25" },
+      { "name": "Another long name for this item in the category", "price": "30" },
+      { "name": "Item with !@#$%^&*()_+=-`~[]\\{}|;':\",./<>? special characters", "price": "15" },
+      { "name": "More special characters here! 🍕🍔🍟", "price": "20" },
+      { "name": "Item 123", "price": "10" },
+      { "name": "456 Item", "price": "12" },
+      { "name": "Item with Ünicode characters", "price": "15" },
+      { "name": "More Ünicode! こんにちは", "price": "20" },
+      { "name": "Item One", "price": "8" },
+      { "name": "Item Two", "price": "10" },
+      { "name": "Item with - dashes", "price": "12" },
+      { "name": "Another - item", "price": "15" },
+      { "name": "UPPERCASE ITEM", "price": "10" },
+      { "name": "lowercase item", "price": "12" },
+      { "name": "Item with spaces", "price": "15" },
+      { "name": "Spaced out item", "price": "20" }
     ]
   },
-  "Category-With-Subcategories": {
+  "Category 2": {
     "items": [
       {
         "name": "Item With Subcategories",
@@ -35,11 +44,6 @@
           { "name": "Subitem 2", "price": "8" }
         ]
       },
-      { "name": "Regular Item", "price": "25" }
-    ]
-  },
-  "Category-With-Only-Subcategories": {
-    "items": [
       {
         "name": "Main Item 1",
         "subcategories": [
@@ -53,12 +57,7 @@
           { "name": "Subitem X", "price": "10" },
           { "name": "Subitem Y", "price": "12" }
         ]
-      }
-    ]
-  },
-  "Category-With-Mixed-Items": {
-    "items": [
-      { "name": "Regular Item 1", "price": "15" },
+      },
       {
         "name": "Item with Subcategories",
         "price": "20",
@@ -67,43 +66,10 @@
           { "name": "Subitem B", "price": "7" }
         ]
       },
-      { "name": "Regular Item 2", "price": "18" }
-    ]
-  },
-  "Category-With-No-Price": {
-    "items": [
-      { "name": "Item Without Price", "price": "0" },
-      { "name": "Another Item", "price": "12" }
-    ]
-  },
-  "Category-With-Long-Names": {
-    "items": [
-      { "name": "This is an item with a very long name that might wrap", "price": "25" },
-      { "name": "Another long name for this item in the category", "price": "30" }
-    ]
-  },
-  "Category-With-Special-Characters": {
-    "items": [
-      { "name": "Item with !@#$%^&*()_+=-`~[]\\{}|;':\",./<>? special characters", "price": "15" },
-      { "name": "More special characters here! 🍕🍔🍟", "price": "20" }
-    ]
-  },
-  "Category-With-Numbers-In-Names": {
-    "items": [
-      { "name": "Item 123", "price": "10" },
-      { "name": "456 Item", "price": "12" }
-    ]
-  },
-  "Category-With-Empty-Subcategory": {
-    "items": [
       {
         "name": "Item with Empty Subcategory",
         "subcategories": []
-      }
-    ]
-  },
-  "Category-With-Nested-Subcategories": {
-    "items": [
+      },
       {
         "name": "Level 1",
         "subcategories": [
@@ -115,40 +81,6 @@
           }
         ]
       }
-    ]
-  },
-  "Category-With-Unicode-Characters": {
-    "items": [
-      { "name": "Item with Ünicode characters", "price": "15" },
-      { "name": "More Ünicode! こんにちは", "price": "20" }
-    ]
-  },
-  "123-Category-Starting-With-Number": {
-    "items": [
-      { "name": "Item One", "price": "8" },
-      { "name": "Item Two", "price": "10" }
-    ]
-  },
-  "Category-With-Dashes---In-Name": {
-    "items": [
-      { "name": "Item with - dashes", "price": "12" },
-      { "name": "Another - item", "price": "15" }
-    ]
-  },
-  "CATEGORY-WITH-UPPERCASE-NAME": {
-    "items": [
-      { "name": "UPPERCASE ITEM", "price": "10" },
-      { "name": "lowercase item", "price": "12" }
-    ]
-  },
-  "Category-With_Spaces_In_Name": {
-    "items": [
-      { "name": "Item with spaces", "price": "15" }
-    ]
-  },
-  "  Category-With-Leading-And-Trailing-Spaces  ": {
-    "items": [
-      { "name": "Spaced out item", "price": "20" }
     ]
   }
 }
