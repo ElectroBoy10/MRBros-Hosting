@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,7 +163,6 @@
     }
   </style>
 </head>
-
 <body>
   <button class="theme-button" id="theme-toggle">&#9728;</button>
   <div class="container">
@@ -220,7 +218,24 @@
         },
         body: JSON.stringify({username, password})
       })
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            if (response.status === 401) {
+              return response.json().then(data => {
+                throw new Error(`Authentication failed: ${data.error || 'Invalid credentials'}`);
+              });
+            } else if (response.status === 404) {
+              throw new Error('Authentication endpoint not found');
+            } else if (response.status === 500) {
+              return response.json().then(data => {
+                throw new Error(`Server error: ${data.error || 'Internal server error'}`);
+              });
+            } else {
+              throw new Error(`HTTP error: ${response.status} - ${response.statusText}`);
+            }
+          }
+          return response.json();
+        })
         .then(data => {
           if (data.error) {
             messageDiv.innerHTML = `<p class="error">${data.error}</p>`;
@@ -229,7 +244,7 @@
           }
         })
         .catch(error => {
-          messageDiv.innerHTML = '<p class="error">An error occurred</p>';
+          messageDiv.innerHTML = `<p class="error">An error occurred: ${error.message}</p>`;
         });
     });
 
@@ -240,5 +255,4 @@
     });
   </script>
 </body>
-
 </html>
