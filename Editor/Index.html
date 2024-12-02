@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Authentication</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .link {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Continue</button>
+        </form>
+        <div id="message"></div> 
+    </div>
+
+    <script>
+        const form = document.getElementById('login-form');
+        const messageDiv = document.getElementById('message');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Simulated authentication (replace with your serverless function call)
+            const credentials = {
+                "user1": { password: "pass1", link: "https://example1.com" },
+                "user2": { password: "pass2", link: "https://example2.com" },
+                "user3": { password: "pass3", link: "https://example3.com" }
+            };
+
+            if (credentials[username] && credentials[username].password === password) {
+                messageDiv.innerHTML = `<p class="link">Your link: <a href="${credentials[username].link}" target="_blank">${credentials[username].link}</a></p>`;
+            } else {
+                messageDiv.innerHTML = '<p class="error">Invalid username or password</p>';
+            }
+        });
+    </script>
+</body>
+</html>
