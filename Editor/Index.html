@@ -13,6 +13,7 @@
             min-height: 100vh;
             background-color: #f0f0f0;
             color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -20,50 +21,183 @@
             padding: 30px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
         }
 
         input[type="text"], input[type="password"] {
-            width: 100%;
+            width: calc(100% - 30px);
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 3px;
+            transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #2196F3;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 3px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .error {
             color: red;
             margin-top: 10px;
+            animation: fade-in 0.5s ease;
         }
 
         .link {
             margin-top: 10px;
             font-weight: bold;
+            animation: fade-in 0.5s ease;
+            transition: color 0.3s ease;
+        }
+
+        .link a {
+            color: #2196F3;
+            transition: color 0.3s ease;
+        }
+
+        .theme-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .eye-button {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        .dark-mode .container {
+            background-color: #222;
+        }
+
+        .dark-mode input[type="text"],
+        .dark-mode input[type="password"] {
+            border-color: #555;
+            background-color: #222;
+            color: #f0f0f0;
+        }
+
+        .dark-mode button {
+            background-color: #1565C0;
+        }
+
+        .dark-mode .error {
+            color: #f44336;
+        }
+
+        .dark-mode .link a {
+            color: #90CAF9;
+        }
+
+        .dark-mode .theme-button {
+            color: #f0f0f0;
+        }
+
+        .dark-mode .eye-button {
+            color: #f0f0f0;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #MRBros {
+            font-weight: bold;
+            font-style: italic;
+            font-family: sans-serif;
+            font-size: 10px;
+            display: block;
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            z-index: 98;
+            color: rgb(0, 38, 255);
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease; 
+        }
+
+        #MRBros:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+            outline: darkslateblue;
+        }
+
+        .dark-mode #MRBros {
+            color: rgb(138, 180, 248);
         }
     </style>
 </head>
 <body>
+    <button class="theme-button" id="theme-toggle">&#9728;</button>
     <div class="container">
         <h2>Login</h2>
         <form id="login-form">
             <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="button" class="eye-button" id="eye-button">&#x1F441;</button>
+            </div>
             <button type="submit">Continue</button>
         </form>
         <div id="message"></div> 
     </div>
+    <button id="MRBros">Made By MRBros</button>
 
     <script>
         const form = document.getElementById('login-form');
         const messageDiv = document.getElementById('message');
+        const themeToggle = document.getElementById('theme-toggle');
+        const eyeButton = document.getElementById('eye-button');
+        const passwordInput = document.getElementById('password');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+
+        eyeButton.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeButton.innerHTML = '&#x1F440;';
+            } else {
+                passwordInput.type = 'password';
+                eyeButton.innerHTML = '&#x1F441;';
+            }
+        });
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -71,18 +205,30 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Simulated authentication (replace with your serverless function call)
-            const credentials = {
-                "user1": { password: "pass1", link: "https://example1.com" },
-                "user2": { password: "pass2", link: "https://example2.com" },
-                "user3": { password: "pass3", link: "https://example3.com" }
-            };
+            fetch('/.netlify/functions/authenticate', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    messageDiv.innerHTML = `<p class="error">${data.error}</p>`;
+                } else {
+                    messageDiv.innerHTML = `<p class="link">Your link: <a href="${data.link}" target="_blank">${data.link}</a></p>`;
+                }
+            })
+            .catch(error => {
+                messageDiv.innerHTML = '<p class="error">An error occurred</p>';
+            });
+        });
 
-            if (credentials[username] && credentials[username].password === password) {
-                messageDiv.innerHTML = `<p class="link">Your link: <a href="${credentials[username].link}" target="_blank">${credentials[username].link}</a></p>`;
-            } else {
-                messageDiv.innerHTML = '<p class="error">Invalid username or password</p>';
-            }
+        document.getElementById('MRBros').addEventListener('click', () => {
+            if (confirm("Do you want to continue to biolink?")) { 
+                window.open("https://bio.link/mrbros1509", "_blank");
+            } 
         });
     </script>
 </body>
