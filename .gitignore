@@ -1,5 +1,6 @@
 # Ignore all files in Beta directory
 Beta/*
+Editor/*
 
 # Ignore sensitive files or configs
 .env
