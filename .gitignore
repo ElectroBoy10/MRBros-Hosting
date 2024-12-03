@@ -1,2 +1,22 @@
-#Ignore files
-*
+# Ignore all files in Beta directory
+Beta/*
+
+# Ignore sensitive files or configs
+.env
+firebase-config.js
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore npm/node related files (if using Node.js)
+node_modules/
+package-lock.json
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore build outputs
+dist/
+build/
